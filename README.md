@@ -51,3 +51,29 @@ A typical Framework project looks like this:
 | `yarn deploy`     | Deploy your app to Observable                            |
 | `yarn clean`      | Clear the local data loader cache                        |
 | `yarn observable` | Run commands like `observable help`                      |
+
+## For Python data exploration of Foodb.ca data
+
+```
+uv pip compile requirements.in -o requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate # or for fish: source .venv/bin/activate.fish
+pip install -r requirements.txt
+```
+
+## For dbt
+
+``` 
+dbt init data_processing
+cd data_processing
+dbt run
+```
+
+## For making new data models
+
+To test a single model:
+```
+dbt run --select AccessionNumber
+duckdb -c "SELECT * FROM '~/data/foodb/AccessionNumber.parquet' LIMIT 10;"
+```
+
